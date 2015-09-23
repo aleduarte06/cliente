@@ -1,0 +1,19 @@
+{
+  "name": "proy_gral",
+  "version": "0.0.0",
+  "homepage": "https://github.com/aleduarte06/proy_gral",
+  "authors": [
+    "aleduarte06 <aleduarte06@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "normalize.css#~3.0.3"
+  }
+}
