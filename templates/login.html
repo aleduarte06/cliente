@@ -4,18 +4,18 @@
         <form>
             <fieldset class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" placeholder="Email" id="email"/>
+                <input type="email" class="form-control" placeholder="Email" id="email" ng-model="user.email"/>
             </fieldset>
             <fieldset class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" class="form-control" placeholder="Contraseña" id="password"/>
+                <input type="password" class="form-control" placeholder="Contraseña" id="password" ng-model="user.password"/>
             </fieldset>
             <fieldset class="form-group">
                 <a href="#">Olvide mi contraseña</a>
             </fieldset>
             <br/>
             <fieldset class="form-group">
-                <button class="btn btn-default btn-block">Ingresar</button>
+                <button class="btn btn-default btn-block" ng-click="login()">Ingresar</button>
             </fieldset>
         </form>
     </section>
