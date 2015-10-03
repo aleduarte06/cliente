@@ -3,6 +3,24 @@
  */
 var mod = angular.module('myapp');
 
+mod.factory('authInterceptor', function ($rootScope, $q, $window) {
+    return {
+        request: function (config) {
+            config.headers = config.headers || {};
+            if ($window.sessionStorage.token)
+                config.headers.Authorization = 'JWT '+ $window.sessionStorage.token;
+
+            return config
+        },
+        response: function (response) {
+            if (response.status === 401) {
+                // handle the case where the user is not authenticated
+            }
+            return response || $q.when(response);
+        }
+    }
+});
+
 mod.controller('buscadorCtrl', function($scope,$state,$http){
     console.log('Primer Controlador');
     $scope.busqueda = '';
@@ -46,16 +64,17 @@ mod.controller('registerCtrl', function($scope,$http,$state){
     };
 });
 
-mod.controller('loginCtrl', function ($scope,$http,store,$state) {
+mod.controller('loginCtrl', function ($scope,$http,$window,$state) {
     var url = 'http://172.10.0.20:8000/login/';
     $scope.login = function () {
         $http.post(url, $scope.user)
             .then(function (res) {
                 console.log(res.data.token);
-                store.set('token', res.data.token)
+                $window.sessionStorage.token = res.data.token;
                 $state.go('home')
             })
             .catch(function (res) {
+                delete($window.sessionStorage.token);
                 console.log(res.data)
             })
     }
